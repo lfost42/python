@@ -2,7 +2,7 @@
 
 |  |     |  |
 | ------- | -------- | -------------- |
-| [ ] | Lesson 1 | [folder](./L1) |
+| &#9744; | Lesson 1 | [folder](./L1) |
 | &#9744; | Lesson 2 | [folder](./L2) |
 | &#9744; | Lesson 3 | [folder](./L3) |
 | &#9744; | Lesson 4 | [folder](./L4) |

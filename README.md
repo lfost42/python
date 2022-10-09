@@ -1,6 +1,6 @@
 # Smoothstack Dynamics
 
-##Pre-Apprenticeship
+## Pre-Apprenticeship
 |  |     |  |
 | ------- | -------- | -------------- |
 | &#9744; | Lesson 1 | [folder](./week01/L01) |
@@ -14,5 +14,5 @@
 | &#9744; | Lesson 9 | [folder](./week02/L09) |
 | &#9744; | Lesson 10 | [folder](./week02/L10) |
 
-##Apprenticeship Training
+## Apprenticeship Training
 ... to be continued

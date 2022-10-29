@@ -1,4 +1,3 @@
 # Smoothstack DevOps
-## Lesson 2
-
+## W01D4
 

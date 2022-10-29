@@ -1,4 +1,3 @@
-# Smoothstack Dynamics
-## Lesson 1 - Introduction to Dynamics
+# Smoothstack DevOps
+## Lesson 1
 
-https://learn.microsoft.com/en-us/training/paths/examine-core-capabilities-of-microsoft-dynamics-365-customer-engagement-apps/

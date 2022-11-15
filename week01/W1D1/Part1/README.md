@@ -19,8 +19,6 @@ pytest
 
 6. Freeze the packages into a file called requirements.txt
 
-7. Upload the requirements.txt file (Just copy and paste) into your git repo.
-
-8. OR send me the file.
+7. Upload the requirements.txt file
 
 Due Date: Nov 15th before class (7:30am PST)

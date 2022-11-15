@@ -1,4 +1,4 @@
-# Smoothstack Dynamics
+# Smoothstack DevOps
 
 ## Pre-Apprenticeship Week 1
 |  |     |  |

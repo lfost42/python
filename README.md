@@ -1,20 +1,22 @@
-# Smoothstack DevOps
+# Smoothstack AWS DevOps Engineer
 
-## Pre-Apprenticeship Week 1
+## Pre-Apprenticeship Week 1&2 Combined
 |  |     |  |
 | ------- | -------- | -------------- |
-| &#9744; | W1D1 | [folder](./week01/W1D1) |
-| &#9744; | W1D2 | [folder](./week01/W1D2) |
-| &#9744; | W1D3 | [folder](./week01/W1D3) |
-| &#9744; | W1D4 | [folder](./week01/W1D4) |
-| &#9744; | W1D5 | [folder](./week01/W1D5) |
+| &#9745; | W1D1 - Part1 Vagrant and Virtualenv | [folder](./week01/W1D1/Part1) |
+| &#9745; | W1D1 - Part2 Python Data Structures | [folder](./week01/W1D1/Part2) |
 
-## Pre-Apprenticeship Week 2
-| &#9744; | W2D1 | [folder](./week02/W2D1) |
-| &#9744; | W2D2 | [folder](./week02/W2D2) |
-| &#9744; | W2D3 | [folder](./week02/W2D3) |
-| &#9744; | W2D4 | [folder](./week02/W2D4) |
-| &#9744; | W2D5 | [folder](./week02/W2D5) |
+| &#9744; | W1D2 - Part 1 Control Structures | [folder](./week01/W1D2) |
+| &#9744; | W1D2 - Part 2 OO & Functional Programming | [folder](./week01/W1D2) |
+
+| &#9744; | W1D3 - Part 1 Testing | [folder](./week01/W1D3) |
+| &#9744; | W1D3 - Part 2 Pylint and Coverage | [folder](./week01/W1D3) |
+
+| &#9744; | W1D4 - Part 1 Packaging | [folder](./week01/W1D4) |
+| &#9744; | W1D4 - Part 2 Flask Core | [folder](./week01/W1D4) |
+
+| &#9744; | W1D5 - Part 1 Flask Sessions | [folder](./week01/W1D5) |
+| &#9744; | W1D5 - Part 2 Flask SQLite & Alchemy | [folder](./week01/W1D5) |
 
 ## Apprenticeship Training
 ... to be continued

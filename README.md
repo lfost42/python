@@ -15,7 +15,7 @@
 | &#9744; | W1D4 - Part 1 Packaging | [folder](./week01/W1D4) |
 | &#9744; | W1D4 - Part 2 Flask Core | [folder](./week01/W1D4) |
 | &#9744; | W1D5 - Part 1 Flask Sessions | [folder](./week01/W1D5) |
-| &#9744; | W1D5 - Part 2 Flask SQLite & Alchemy | [folder](./week01/W1D5) |
+| &#9744; | W1D5 - Part 2 Flask with SQLite & Alchemy | [folder](./week01/W1D5) |
 
 ## Apprenticeship Training
 ... to be continued

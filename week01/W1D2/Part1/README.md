@@ -1,4 +1,4 @@
-# Day2Part2
+# Day2Part1
 
 Control Structures
 

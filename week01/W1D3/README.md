@@ -1,6 +1,6 @@
 # Day3
 
-Testing and Modules
+Linting
 
 ## Assignment
-
+Use google.pylint to correct many_lints.py

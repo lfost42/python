@@ -10,7 +10,6 @@ class StudentModel(BaseModel):
     student_name: str
     student_id: int
     date_of_birth: datetime.date
-    # student age between 18 and 50 all inclusive
     address: str
     state: str
     zip_code: str

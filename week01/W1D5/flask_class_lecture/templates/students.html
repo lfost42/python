@@ -1,0 +1,23 @@
+<div>
+    <h1>List of All Students in the Database</h1>
+    <table>
+        <tr>
+            <th>Student Name</th>
+            <th>Student Id</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>State</th>
+            <th>Zip Code</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.student_name }}</td>
+            <td>{{ student.student_id }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.state }}</td>
+            <td>{{ student.zip_code }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>

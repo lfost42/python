@@ -1,4 +1,7 @@
-from app import create_app
+"""
+Run file
+"""
+from project import create_app
 
 app = create_app()
 

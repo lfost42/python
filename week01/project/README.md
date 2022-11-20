@@ -16,20 +16,15 @@ Write a browser based client that allows a user to upload .xlsx files to a flask
 Write a python program to spin up a flask webserver. The flask webserver should implement at least one http method (using a decorator) 
 
 [x] - Firstly, to save an uploaded excel file to a designated upload folder in a file system accessible to the webserver.
-
-[ ] - Secondly, to parse the file, and generate output. The parse logic is described below.
-
+[-] - Secondly, to parse the file, and generate output. The parse logic is described below.
 [ ] - Thirdly to store the output in a table in sqlite.
 
 For any of the above processing:
 
-[ ]  log the normal status or an error message if an error occurs, using a logger to a log file
-
-[ ]  the flask webserver will log any such messages to a logfile on the server side
-
+[x]  log the normal status or an error message if an error occurs, using a logger to a log file
+[x]  the flask webserver will log any such messages to a logfile on the server side
 [x]  move the file to a designated "error" folder if an error occurs, or move it to a designated "archive" folder if processing succeeds
-
-[ ]  return an appropriate http code to the client that reflects the success/failure
+[x]  return an appropriate http code to the client that reflects the success/failure
 
 There are more details specified in the work item processing job status section below in this document.
 
@@ -39,12 +34,9 @@ There are more details specified in the work item processing job status section 
 As mentioned above, the http method you implement in the flask webserver, will attempt to parse the excel file after it saves it to a folder on the server side. Here are some details on how you need to implement this parser:
 
 [x] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
-
 [x] 2. The parser should attempt to parse the file that was just uploaded.
-
 [x] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
-
-[ ] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
+[x] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
 
 ### Output 1
 

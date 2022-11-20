@@ -1,21 +1,19 @@
 import os
-import datetime
-from shutil import move
-import openpyxl
+from openpyxl import load_workbook
+from openpyxl.utils import rows_from_range
 from flask import Flask
+import unicodedata
+import datetime
 
 app = Flask(__name__)
 
 def check_file(file):
-    """check if file is expedia_report_summary
+    """check if file matches expedia_report_summary
 
-    Returns:
-        _type_: _description_
+    Args:
+        file (FileStorage): the file we are attempting to upload
     """
-    if file.filename.startswith('expedia_report_monthly_'):
-        archive_file(file)
-        app.logger.info(f'{file} moved to archived')
-    else:
+    if not file.filename.startswith('expedia_report_monthly_'):
         error_file(file)
         app.logger.error(f'{file} moved to error, file name does not start with expedia_report_monthly_')
 
@@ -33,7 +31,7 @@ def read_file(file):
             print('No file found with name: expedia_report_monthly_MONTH_YEAR.xlsx')
         else:
             try:
-                workbook = openpyxl.load_workbook(file)
+                workbook = load_workbook(file, data_only=True)
                 return workbook
             except:
                 app.logger.error('Data uanble to load')
@@ -45,11 +43,12 @@ def archive_file(file):
     """Move to archived folder
 
     Args:
-        file (_type_): FileStorage
+        file (FileStorage): the file we are attempting to upload
     """
     arch_folder = 'files/archived'
     if os.path.exists(arch_folder):
         file.save(os.path.join(arch_folder, file.filename))
+    return 'archived'
 
 def error_file(file):
     """Move to error folder
@@ -60,42 +59,42 @@ def error_file(file):
     err_folder = 'files/error/'
     if os.path.exists(err_folder):
         file.save(os.path.join(err_folder, file.filename))
+    return 'error'
 
 def find_row(worksheet, search):
-    """_summary_
+    for my_row in range(1, worksheet.max_row + 1):
+        text = worksheet.cell(row = my_row, column = 1).value
+        
+        if text is not None:
+            if type(text) == datetime.datetime:
+                date_str = str(text.strftime("%b-%Y")).lower()
+                new_txt = date_str[:4]+date_str[-2:]
+                
+                if new_txt == search:
+                    return my_row
+                
+            if isinstance(text, str):
+                if search.lower() in text.lower():
+                    return my_row
+                
+    app.logger.error(f'{search} not found (row)')
+    return -1
 
-    Args:
-        worksheet (_type_): _description_
-        search (_type_): _description_
+def find_column(worksheet, search):    
+    for my_col in range(1, worksheet.max_column + 1):
+        text = worksheet.cell(row = 1, column = my_col).value
+            
+        if text is not None:
+            if type(text) != datetime.datetime:
+                if isinstance(text, str):
+                    if search.lower() in text.lstrip().lower():
+                        return my_col
+            
+            if type(text) == datetime.datetime:
+                date_str = str(text.strftime("%b"))
+                if search.lower() in date_str.lower():
+                    app.logger.critical(f'returning my column: {my_col}')
+                    return my_col
 
-    Returns:
-        _type_: _description_
-    """
-    for x in range(1, worksheet.max_column + 1):
-        for y in range(1, worksheet.max_row + 1):
-            current_cell = worksheet.cell(row = y, column = x).value
-            if isinstance(current_cell, str) and isinstance(search, str):
-                if search in current_cell:
-                    return y
-            elif isinstance(current_cell, datetime.date) and isinstance(search, datetime.datetime):
-                if current_cell.year == search.year and current_cell.month == search.month:
-                    return y
-            else:
-                continue
-    app.logger.error('Row with matching date not found')
-
-def find_column(worksheet, name):
-    """_summary_
-
-    Args:
-        worksheet (_type_): _description_
-        name (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
-    for x in range(1, worksheet.max_column + 1):
-        for y in range(1, worksheet.max_row + 1):
-            if worksheet.cell(row = y, column = x).value == name:
-                return x
-    app.logger.error('Column with matching date not found')
+    app.logger.error(f'{search} not found (column)')
+    return -1

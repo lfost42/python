@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template
 import logging, os
 from logging.handlers import RotatingFileHandler
+from flask import Flask
 
 errors = Blueprint('errors', __name__)
+app = Flask(__name__)
 
-file_handler = RotatingFileHandler('expedia-info.log',
+file_handler = RotatingFileHandler('files/expedia-info.log',
                                     maxBytes=16384,
                                     backupCount=20)
 file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in function %(funcName)s filename:%(filename)s:%(lineno)d]')

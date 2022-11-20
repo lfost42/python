@@ -1,31 +1,23 @@
 import os
 import datetime
-import shutil
+from shutil import move
 import openpyxl
+from flask import Flask
 
-def find_file():
-    """_summary_
+app = Flask(__name__)
+
+def check_file(file):
+    """check if file is expedia_report_summary
 
     Returns:
         _type_: _description_
     """
-    try:
-        path_array = []
-        for file in os.listdir('./parser/external_files'):
-            if file.startswith('expedia_report_monthly_'):
-                path = './parser/external_files/{file}'
-                path_array.append(path)
-                src_folder = '/parser/external_files/'
-                if os.path.exists(src_folder):
-                    shutil.move(path, src_folder)
-            else:
-                file_path = f'./parser/external_files/{file}'
-                error_file(file_path)
-
-        if len(path_array) > 0:
-            return path_array
-    except:
-        #print('Unable to load file')
+    if file.filename.startswith('expedia_report_monthly_'):
+        archive_file(file)
+        app.logger.info(f'{file} moved to archived')
+    else:
+        error_file(file)
+        app.logger.error(f'{file} moved to error, file name does not start with expedia_report_monthly_')
 
 def read_file(file):
     """_summary_
@@ -38,49 +30,37 @@ def read_file(file):
     """
     try:
         if not file:
-            print('No file found under naming convention: expedia_report_monthly_MONTH_YEAR.xlsx')
+            print('No file found with name: expedia_report_monthly_MONTH_YEAR.xlsx')
         else:
             try:
                 workbook = openpyxl.load_workbook(file)
                 return workbook
             except:
-                print('Data was not able to load')
+                app.logger.error('Data uanble to load')
 
     except:
-        print('Error while reading File')
+        app.logger.error('Error reading File')
 
 def archive_file(file):
-    """_summary_
+    """Move to archived folder
 
     Args:
-        arch_file (_type_): _description_
+        file (_type_): FileStorage
     """
-    src_folder = "./parser/files/archived/"
-    if os.path.exists(src_folder):
-        shutil.move(file, src_folder)
+    arch_folder = 'files/archived'
+    if os.path.exists(arch_folder):
+        file.save(os.path.join(arch_folder, file.filename))
 
 def error_file(file):
-    """_summary_
+    """Move to error folder
 
     Args:
-        error_file (_type_): _description_
+        file (_type_): FileStorage
     """
-    file_name = file.split('./parser/files/archived/')[1]
-    src_folder = "./parser/files/archived/"
-    print(f"File moved to {file_name}")
+    err_folder = 'files/error/'
+    if os.path.exists(err_folder):
+        file.save(os.path.join(err_folder, file.filename))
 
-    if len(os.listdir('./parser/error')) > 0:
-        for file in os.listdir('./parser/files/error'):
-            if file == file.split('./parser/files/external_files/')[1]:
-                break
-            else:
-                if os.path.exists(src_folder):
-                    shutil.move(file, src_folder)
-
-    else:
-        if os.path.exists(src_folder):
-            shutil.move(file, src_folder)
-            
 def find_row(worksheet, search):
     """_summary_
 
@@ -102,7 +82,7 @@ def find_row(worksheet, search):
                     return y
             else:
                 continue
-    #print('Row with matching date not found')
+    app.logger.error('Row with matching date not found')
 
 def find_column(worksheet, name):
     """_summary_
@@ -114,8 +94,8 @@ def find_column(worksheet, name):
     Returns:
         _type_: _description_
     """
-    for i_col in range(1, worksheet.max_column + 1):
-        for i_row in range(1, worksheet.max_row + 1):
-            if worksheet.cell(row = i_row, column = i_col).value == name:
-                return i_col
-    #print('Column with matching date not found')
+    for x in range(1, worksheet.max_column + 1):
+        for y in range(1, worksheet.max_row + 1):
+            if worksheet.cell(row = y, column = x).value == name:
+                return x
+    app.logger.error('Column with matching date not found')

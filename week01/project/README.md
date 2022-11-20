@@ -15,7 +15,7 @@ Write a browser based client that allows a user to upload .xlsx files to a flask
 
 Write a python program to spin up a flask webserver. The flask webserver should implement at least one http method (using a decorator) 
 
-[ ] - Firstly, to save an uploaded excel file to a designated upload folder in a file system accessible to the webserver.
+[x] - Firstly, to save an uploaded excel file to a designated upload folder in a file system accessible to the webserver.
 
 [ ] - Secondly, to parse the file, and generate output. The parse logic is described below.
 
@@ -27,7 +27,7 @@ For any of the above processing:
 
 [ ]  the flask webserver will log any such messages to a logfile on the server side
 
-[ ]  move the file to a designated "error" folder if an error occurs, or move it to a designated "archive" folder if processing succeeds
+[x]  move the file to a designated "error" folder if an error occurs, or move it to a designated "archive" folder if processing succeeds
 
 [ ]  return an appropriate http code to the client that reflects the success/failure
 
@@ -38,11 +38,11 @@ There are more details specified in the work item processing job status section 
 
 As mentioned above, the http method you implement in the flask webserver, will attempt to parse the excel file after it saves it to a folder on the server side. Here are some details on how you need to implement this parser:
 
-[ ] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
+[x] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
 
-[ ] 2. The parser should attempt to parse the file that was just uploaded.
+[x] 2. The parser should attempt to parse the file that was just uploaded.
 
-[ ] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
+[x] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
 
 [ ] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
 

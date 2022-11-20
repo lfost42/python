@@ -20,10 +20,13 @@
 <body>
   <div style="padding:20px" >
   <h1>Report Generator</h1>
-  <p>Click submit to consume all files in the external_files folder.</p>
-        <form method="POST" action="/"">
+
+  <p>Select a file to upload and process.</p>
+
+        <form method="POST" action="/" enctype="multipart/form-data">
+            <input type="file" name="file">
             <button>Submit</button>
         </form>
-    </div>
+  </div>
 </body>
 </html>

@@ -1,6 +1,15 @@
 from flask import Blueprint, render_template
+import logging, os
+from logging.handlers import RotatingFileHandler
 
 errors = Blueprint('errors', __name__)
+
+file_handler = RotatingFileHandler('expedia-info.log',
+                                    maxBytes=16384,
+                                    backupCount=20)
+file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in function %(funcName)s filename:%(filename)s:%(lineno)d]')
+file_handler.setFormatter(file_formatter)
+app.logger.addHandler(file_handler)
 
 @errors.app_errorhandler(404)
 def error_404(error):

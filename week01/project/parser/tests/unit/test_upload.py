@@ -1,0 +1,3 @@
+"""
+Tests all uplaod methods.
+"""

@@ -1,0 +1,3 @@
+"""
+Tests all record methods.
+"""

@@ -2,15 +2,13 @@
 Creates sqlite database schema.
 """
 from flask import Flask
-import logging
-import os
+import logging, os
 from flask_sqlalchemy import SQLAlchemy
+import config
 
-app = Flask(__name__)
-base_dir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'app.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+config['SQLALCHEMY_DATABASE_URI']
+config['SQLALCHEMY_TRACK_MODIFICATIONS']
 
 """
 Class to upload excel file 
@@ -21,9 +19,9 @@ class Upload(db.Model):
     data = db.Column(db.LargeBinary)
 
 """
-Class for Summary Rolling MoM worksheet.  
+Class for Summary Rolling MoM worksheet properties.  
 """
-class Summary(db.Model):
+class SummaryInfo(db.Model):
     __tablename__ = 'summary'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
@@ -44,8 +42,10 @@ class Summary(db.Model):
     def __repr__(self):
         return f"{self.id}-{self.date}-{self.callsoffered}-{self.abandoned}-{self.fcr}-{self.dsat}-{self.dsat}"
 
-
-class Voc(db.Model):
+"""
+Class for VOC Rolling MoM worksheet properties.  
+"""
+class VocInfo(db.Model):
     __tablename__ = 'voc'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)

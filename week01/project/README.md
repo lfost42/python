@@ -16,7 +16,7 @@ Write a browser based client that allows a user to upload .xlsx files to a flask
 Write a python program to spin up a flask webserver. The flask webserver should implement at least one http method (using a decorator) 
 
 [x] - Firstly, to save an uploaded excel file to a designated upload folder in a file system accessible to the webserver.
-[-] - Secondly, to parse the file, and generate output. The parse logic is described below.
+[x] - Secondly, to parse the file, and generate output. The parse logic is described below.
 [ ] - Thirdly to store the output in a table in sqlite.
 
 For any of the above processing:
@@ -33,10 +33,10 @@ There are more details specified in the work item processing job status section 
 
 As mentioned above, the http method you implement in the flask webserver, will attempt to parse the excel file after it saves it to a folder on the server side. Here are some details on how you need to implement this parser:
 
-[x] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
-[x] 2. The parser should attempt to parse the file that was just uploaded.
-[x] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
-[x] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
+[X] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
+[X] 2. The parser should attempt to parse the file that was just uploaded.
+[X] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
+[X] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
 
 ### Output 1
 
@@ -77,7 +77,7 @@ You will need to look at the output logged in the above section, to design your 
 
 ## Work Item Processing Job Status
 
-Client folder: For this assignment, there are two files that are included in your client folder that a browser can access, but there could be numerous:
+[ ] Client folder: For this assignment, there are two files that are included in your client folder that a browser can access, but there could be numerous:
 
 ```
  expedia_report_monthly_january_2018.xlsx
@@ -86,31 +86,22 @@ Client folder: For this assignment, there are two files that are included in you
 
 There are no sub-folders and the files are not recursively stored.
 
-Server folder: A file list should be created, which keeps track of all the filenames which have been processed. This file list should be persisted in a file called processed.lst in a filesystem accessible to the flask webserver.
+[x] Server folder: A file list should be created, which keeps track of all the filenames which have been processed. This file list should be persisted in a file called processed.lst in a filesystem accessible to the flask webserver.
 
-- Files which are processed, should not be processed again even if the user attempts to upload them.
-- You can assume that files with the same name on the client will not be updated locally once they are created with initial content.
-- Newly uploaded files are not saved by flask to the file system.
-- Files once processed in the upload directory should be moved to an archive directory once they are successfully processed.
-- Error checks on the file:
+[x] Files which are processed, should not be processed again even if the user attempts to upload them.
 
-```
-In case if the file name appears invalid (or the month and year cannot be inferred easily from the file name), the file needs to be moved to a designated "error" folder, and you need to log an appropriate message in the log file, using the python logger.
+[x] You can assume that files with the same name on the client will not be updated locally once they are created with initial content.
 
-If any of the spreadsheet tabs are missing, then the file is invalid and should be moved to the "error" folder.
-```
+[x] Newly uploaded files are not saved by flask to the file system.
 
-## Installation
+[x] Files once processed in the upload directory should be moved to an archive directory once they are successfully processed.
 
-Set up environment
+[x] Error checks on the file:
 
 ```
-source venv/bin/activate or .
-\venv\Scripts\activate
+[x] In case if the file name appears invalid (or the month and year cannot be inferred easily from the file name), the file needs to be moved to a designated "error" folder, and you need to log an appropriate message in the log file, using the python logger.
 
-pip install -r requirements.txt
-
-python run.py
+[x]If any of the spreadsheet tabs are missing, then the file is invalid and should be moved to the "error" folder.
 ```
 
 ## Usage
@@ -119,9 +110,13 @@ This application allows the user to upload a folder of Expedia reports, parse th
 ## Support
 lynda.foster@smoothstack.com
 
-## Optimizations
+## Optimizations and Issues
 
-Stuff I would do if I had more time. 
+Some methods could be moved into classes in the models.py as they only affect the items in the class. I created create error pages for 422 and 404 errors; I found instructions on using Blueprint to do it but I didn't understand how to implement that. 
+
+Line 20 (Database) - ran out of time to implement. I drafted a models.py file with a database schema. 
+
+Line 80 (Client folder) - ran out of time to implement. I would create a second POST method in app.py to include a second option for uploading all files within the client folder. I would need at least one additional method to run the current methods for each file in the folder rather than a single file. A client.py module is drafted with pseudocode.
 
 ## Contributing
 

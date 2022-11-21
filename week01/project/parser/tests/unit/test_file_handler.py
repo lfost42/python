@@ -1,6 +1,7 @@
 """
 Test the upload, reading, and moving of excel files.
 """
+import os
 from werkzeug.datastructures import FileStorage
 from openpyxl import Workbook
 from file_handler import check_file, read_file, archive_file, error_file
@@ -105,6 +106,7 @@ def test_archive_file_moves_file_to_archived():
         content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     )
         assert archive_file(file) == 1
+        os.remove(f'files/archived/{file.filename}')
 
 def test_error_file_moves_file_to_error_folder():
     """

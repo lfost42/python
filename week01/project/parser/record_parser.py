@@ -31,16 +31,18 @@ def summary_data(file):
         app.logger.error(f'Cannot find {datef} in Summary Rolling MoM: {file} | summary_data')
         return -1
 
-    calls = worksheet.cell(row = my_row, column = find_column
-                           (worksheet, 'Calls Offered')).internal_value
-    abandon = worksheet.cell(row = my_row, column = find_column
-                             (worksheet, 'Abandon after 30s')).internal_value
-    fcr = worksheet.cell(row = my_row, column = find_column
-                         (worksheet, 'FCR')).internal_value
-    dsat = worksheet.cell(row = my_row, column = find_column
-                          (worksheet, 'DSAT ')).internal_value
-    csat = worksheet.cell(row = my_row, column = find_column
-                          (worksheet, 'CSAT ')).internal_value
+    calls = worksheet.cell(
+        row = my_row, column = find_column(
+            worksheet, 'Calls Offered')).internal_value
+    abandon = worksheet.cell(
+        row = my_row, column = find_column(
+            worksheet, 'Abandon after 30s')).internal_value
+    fcr = worksheet.cell(row = my_row, column = find_column(
+        worksheet, 'FCR')).internal_value
+    dsat = worksheet.cell(row = my_row, column = find_column(
+        worksheet, 'DSAT ')).internal_value
+    csat = worksheet.cell(row = my_row, column = find_column(
+        worksheet, 'CSAT ')).internal_value
 
     if calls and abandon and fcr and dsat and csat:
         abandon = f'{abandon:.2%}'
@@ -89,20 +91,23 @@ def voc_data(file):
 
     # Check Passives
     my_row = find_row(worksheet, 'Passives')
-    passives = check_score('Passives',
-                           worksheet.cell(row = my_row, column = my_col).internal_value)
+    passives = check_score(
+        'Passives', worksheet.cell(
+            row = my_row, column = my_col).internal_value)
 
     # Check Decractors
     my_row = find_row(worksheet, 'Dectractors')
-    dectractors = check_score('Dectractors',
-                              worksheet.cell(row = my_row, column = my_col).internal_value)
+    dectractors = check_score(
+        'Dectractors', worksheet.cell(
+            row = my_row, column = my_col).internal_value)
 
     if promoters and passives and dectractors:
         data = f'Promoters: {promoters} | Passives: {passives} | Dectractors: {dectractors}'
         app.logger.info(f'VOC data processed from {file.filename}.')
         return data
 
-    app.logger.error(f'ERROR: missing field, {file.filename} moved to error folder | voc_data')
+    app.logger.error(f'ERROR: missing field, {file.filename} \
+        moved to error folder | voc_data')
     return -1
 
 def check_score(category, score):

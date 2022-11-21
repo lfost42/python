@@ -1,11 +1,5 @@
 """
-Mocked classes for our database schema, to be implemented. The next steps would include:
-1. create a validator to use pydantic and enforce class attribute datatypes.
-2. validate the data
-3. implement the dbModel instance with the data
-4. write the data to the database
-5. implement a way for the user to fetch reports from the database (currently shows on web
-    page at uplaod).
+Mocked classes for our database schema, to be implemented. 
 """
 import os
 from flask_sqlalchemy import SQLAlchemy

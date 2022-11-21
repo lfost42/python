@@ -57,9 +57,10 @@ def get_date(file):
     year = check_year(file)
     month = check_month(file)
 
-    if year == -1 or month == -1:
-        app.logger.info('This should not happen.')
+    if -1 in (year,month):
+        app.logger.error(
+            f'Could not parse date month: {month} year: {year} from {file.filename}')
         return -1
-
+    
     app.logger.info(f'Date generated from {file}')
     return [year, month]

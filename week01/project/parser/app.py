@@ -31,9 +31,9 @@ def index():
             check = check_file(file)
 
             #returns 422 status and page
-            if check == -1:
-                app.logger.error(f'{file.filename} is a duplicate, moving to error folder')
-                err_msg = 'Rejected: this is a duplicate file!'
+            if check == -1: 
+                app.logger.error(f'Upload failed: {check}')
+                err_msg = f'Rejected: {check}. Please try again'
                 raise My422Error
 
             date = get_date(file)

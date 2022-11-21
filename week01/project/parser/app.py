@@ -2,9 +2,10 @@
 Application server routes.
 """
 from flask import render_template, request
-from records import summary_data, voc_data
-from upload import error_file, archive_file, get_date, check_file
-from handler import app
+from record_parser import summary_data, voc_data
+from name_parser import get_date
+from file_handler import error_file, archive_file, check_file
+from logging_handler import app
 
 class My422Error(Exception):
     """An extension of the exception calss.

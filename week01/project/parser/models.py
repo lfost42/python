@@ -40,13 +40,13 @@ class SummaryInfo(db.Model):
     dsat = db.Column(db.Float, nullable=False)
     csat = db.Column(db.Float, nullable=False)
 
-    # def __init__(self, date, callsoffered, abandoned, fcr, dsat, csat):
-    #     self.date = date
-    #     self.callsoffered = callsoffered
-    #     self.abandoned = abandoned
-    #     self.fcr = fcr
-    #     self.dsat = dsat
-    #     self.csat = csat
+    def __init__(self, date, callsoffered, abandoned, fcr, dsat, csat):
+        self.date = date
+        self.callsoffered = callsoffered
+        self.abandoned = abandoned
+        self.fcr = fcr
+        self.dsat = dsat
+        self.csat = csat
 
 
 class VocInfo(db.Model):

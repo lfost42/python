@@ -1,3 +1,3 @@
 """
-To test with pydantic. 
+Validate model data imports with pydantic. 
 """

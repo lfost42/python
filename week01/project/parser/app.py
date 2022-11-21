@@ -50,7 +50,7 @@ def index():
                 err_msg = 'Rejected: Bad data, please check worksheets/data.'
                 raise My422Error
 
-            # returns 201 status and report if all checks pass,
+            # returns 200 status and report if all checks pass,
             # adds to processed.lst, and archives file
             app.logger.info(data1)
             app.logger.info(data2)
@@ -63,7 +63,7 @@ def index():
             return render_template('report.html',
                                    file_name = file.filename,
                                    data1=data1,
-                                   data2=data2), 201
+                                   data2=data2), 200
 
         # returns 422 status/page
         except My422Error:
@@ -71,9 +71,4 @@ def index():
             return render_template('error/422.html',
                                        file_name = file.filename, message = err_msg), 422
 
-        # returns 404 status/page
-        except ImportError as import_error:
-            app.logger.exception(f'POST error, file not processed: {import_error}')
-            return render_template('error/404.html'), 404
-
-    return render_template('error/501.html'), 501
+    return render_template('error/405.html'), 405

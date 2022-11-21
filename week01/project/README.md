@@ -15,16 +15,16 @@ Write a browser based client that allows a user to upload .xlsx files to a flask
 
 Write a python program to spin up a flask webserver. The flask webserver should implement at least one http method (using a decorator) 
 
-[x] - Firstly, to save an uploaded excel file to a designated upload folder in a file system accessible to the webserver.
-[x] - Secondly, to parse the file, and generate output. The parse logic is described below.
-[ ] - Thirdly to store the output in a table in sqlite.
+- [x] Firstly, to save an uploaded excel file to a designated upload folder in a file system accessible to the webserver.
+- [x] Secondly, to parse the file, and generate output. The parse logic is described below.
+- [ ] Thirdly to store the output in a table in sqlite.
 
 For any of the above processing:
 
-[x]  log the normal status or an error message if an error occurs, using a logger to a log file
-[x]  the flask webserver will log any such messages to a logfile on the server side
-[x]  move the file to a designated "error" folder if an error occurs, or move it to a designated "archive" folder if processing succeeds
-[x]  return an appropriate http code to the client that reflects the success/failure
+- [x]  log the normal status or an error message if an error occurs, using a logger to a log file
+- [x]  the flask webserver will log any such messages to a logfile on the server side
+- [x]  move the file to a designated "error" folder if an error occurs, or move it to a designated "archive" folder if processing succeeds
+- [x]  return an appropriate http code to the client that reflects the success/failure
 
 There are more details specified in the work item processing job status section below in this document.
 
@@ -33,10 +33,10 @@ There are more details specified in the work item processing job status section 
 
 As mentioned above, the http method you implement in the flask webserver, will attempt to parse the excel file after it saves it to a folder on the server side. Here are some details on how you need to implement this parser:
 
-[X] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
-[X] 2. The parser should attempt to parse the file that was just uploaded.
-[X] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
-[X] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
+- [X] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
+- [X] 2. The parser should attempt to parse the file that was just uploaded.
+- [X] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
+- [X] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
 
 ### Output 1
 
@@ -77,7 +77,7 @@ You will need to look at the output logged in the above section, to design your 
 
 ## Work Item Processing Job Status
 
-[ ] Client folder: For this assignment, there are two files that are included in your client folder that a browser can access, but there could be numerous:
+- [ ] Client folder: For this assignment, there are two files that are included in your client folder that a browser can access, but there could be numerous:
 
 ```
  expedia_report_monthly_january_2018.xlsx
@@ -86,23 +86,18 @@ You will need to look at the output logged in the above section, to design your 
 
 There are no sub-folders and the files are not recursively stored.
 
-[x] Server folder: A file list should be created, which keeps track of all the filenames which have been processed. This file list should be persisted in a file called processed.lst in a filesystem accessible to the flask webserver.
+- [x] Server folder: A file list should be created, which keeps track of all the filenames which have been processed. This file list should be persisted in a file called processed.lst in a filesystem accessible to the flask webserver.
+- [x] Files which are processed, should not be processed again even if the user attempts to upload them.
+- [x] You can assume that files with the same name on the client will not be updated locally once they are created with initial content.
+- [x] Newly uploaded files are not saved by flask to the file system.
+- [x] Files once processed in the upload directory should be moved to an archive directory once they are successfully processed.
 
-[x] Files which are processed, should not be processed again even if the user attempts to upload them.
+- [x] Error checks on the file:
+- [x] In case if the file name appears invalid (or the month and year cannot be inferred easily from the file name), the file needs to be moved to a designated "error" folder, and you need to log an appropriate message in the log file, using the python logger.
+- [x]If any of the spreadsheet tabs are missing, then the file is invalid and should be moved to the "error" folder.
 
-[x] You can assume that files with the same name on the client will not be updated locally once they are created with initial content.
+## Solution
 
-[x] Newly uploaded files are not saved by flask to the file system.
-
-[x] Files once processed in the upload directory should be moved to an archive directory once they are successfully processed.
-
-[x] Error checks on the file:
-
-```
-[x] In case if the file name appears invalid (or the month and year cannot be inferred easily from the file name), the file needs to be moved to a designated "error" folder, and you need to log an appropriate message in the log file, using the python logger.
-
-[x]If any of the spreadsheet tabs are missing, then the file is invalid and should be moved to the "error" folder.
-```
 
 ## Usage
 This application allows the user to upload a folder of Expedia reports, parse the data into a database, and export a summary report for Call and Promoter data for the month. 

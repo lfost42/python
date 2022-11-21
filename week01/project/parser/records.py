@@ -118,7 +118,7 @@ def check_score(category, score):
     if score in (100, 200):
         app.logger(f'Value for {category} is missing or invalid | check_score')
 
-    result = 'good' if category == 'Promoters' and score > 200 else 'bad'
-    result = 'good' if category == 'Passives' and score > 100 else 'bad'
-    result = 'good' if category == 'Dectractors' and score > 100 else 'bad'
+    result = 'good' if category == 'Promoters' and score >= 200 else 'bad'
+    result = 'good' if category == 'Passives' and score >= 100 else 'bad'
+    result = 'good' if category == 'Dectractors' and score >= 100 else 'bad'
     return result

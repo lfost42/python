@@ -4,8 +4,10 @@ Logging handler.
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask
+from flask.logging import create_logger
 
 app = Flask(__name__, instance_relative_config=True)
+app.logger = create_logger(app)
 
 file_handler = RotatingFileHandler('files/expedia-info.log',
                                     maxBytes=16384,

@@ -4,13 +4,6 @@ Creates sqlite database schema.
 import os
 from flask_sqlalchemy import SQLAlchemy
 import app
-# import config
-
-# cfg = app.config.from_pyfile('config.py', instance_relative_config=True)
-# with app.open_instance_resource('application.cfg') as f:
-#     config = f.read()
-# cfg['SQLALCHEMY_DATABASE_URI']
-# cfg['SQLALCHEMY_TRACK_MODIFICATIONS']
 
 db = SQLAlchemy(app)
 

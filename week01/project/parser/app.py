@@ -26,12 +26,13 @@ def index():
         return render_template('index.html')
 
     if request.method == 'POST':
+        err_msg = "No errors"
         try:
             file = request.files['file']
             check = check_file(file)
 
             #returns 422 status and page
-            if check == -1: 
+            if check == -1:
                 app.logger.error(f'Upload failed: {check}')
                 err_msg = f'Rejected: {check}. Please try again'
                 raise My422Error
@@ -39,14 +40,14 @@ def index():
             date = get_date(file)
 
             if date == -1:
-                app.logger.critical(f'Rejected: could not parse date from {file.filename}')
+                app.logger.error(f'Rejected: could not parse date from {file.filename}')
                 err_msg = f'Rejected: could not parse date from {file.filename}'
                 raise My422Error
 
             data1 = summary_data(file)
             data2 = voc_data(file)
             if data1 == -1 or data2 == -1:
-                app.logger.error(f'{file.filename} was not processed, \
+                app.logger.error('Not processed, \
                                  invalid or missing worksheets/data.')
                 err_msg = 'Rejected: Bad data, please check worksheets/data.'
                 raise My422Error
@@ -60,7 +61,7 @@ def index():
                 file_list.write(f'{file.filename}\n')
 
             archive_file(file)
-            app.logger.info(f'{file.filename} archived.')
+            app.logger.info('File archived.')
             return render_template('report.html',
                                    file_name = file.filename,
                                    data1=data1,

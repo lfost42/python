@@ -5,14 +5,9 @@ import os
 import os.path
 from openpyxl import load_workbook
 from logging_handler import app
-# import config as cfg
-
-# cfg = app.config.from_pyfile('config.py', instance_relative_config=True)
-# with app.open_instance_resource('application.cfg') as f:
-#     config = f.read()
 
 def check_file(file):
-    """Check if file type is excel, if name is long enough to 
+    """Check if file type is excel, if name is long enough to
     parse and whether it is a duplicate.
 
     Args:
@@ -75,4 +70,3 @@ def error_file(file):
         return 1
     app.logger.error(f'{err_folder} does not exist.')
     return -1
-

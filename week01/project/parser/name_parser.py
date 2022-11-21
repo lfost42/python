@@ -61,6 +61,6 @@ def get_date(file):
         app.logger.error(
             f'Could not parse date month: {month} year: {year} from {file.filename}')
         return -1
-    
+
     app.logger.info(f'Date generated from {file}')
     return [year, month]

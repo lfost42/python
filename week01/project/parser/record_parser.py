@@ -18,9 +18,9 @@ def summary_data(file):
         integer: -1 if the file or data could not be found.
     '''
     workbook = read_file(file)
-    worksheet = workbook['Summary Rolling MoM']
-
-    if not worksheet:
+    try:
+        worksheet = workbook['Summary Rolling MoM']
+    except KeyError:
         app.logger.error(f'Could not locate Summary Rolling MoM in {file} | summary_data')
         return -1
 

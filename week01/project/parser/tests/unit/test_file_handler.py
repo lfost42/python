@@ -67,7 +67,7 @@ def test_check_file_is_duplicate():
 def test_read_file_raises_exception():
     """
     GIVEN a file for upload
-    WHEN a file is received that dose not contain a workbook
+    WHEN a file is received that does not contain a workbook
     THEN check that -1 is returned. 
     """
     with open("tests/test_samples/argumentexception.xlxs", "rb") as test_file:

@@ -79,10 +79,42 @@ def test_422_bad_file_year(test_client):
     assert b'HTTP 422 Unprocessable Entity' in response.data
     assert b'Please try again' in response.data
 
-# def test_422_missing_summary_worksheet(test_client):
+def test_422_missing_summary_worksheet(test_client):
+    """
+    GIVEN a sample file from the test_samples folder
+    WHEN a file a missing summary worksheet is submitted
+    THEN check that the status is not processable.
+    """
+    with open("tests/test_samples/missing_ws_january_2018.xlsx", "rb") as test_file:
+        file = FileStorage(
+        stream = test_file,
+        filename="missing_ws_january_2018.xlsx",
+        content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
+        response = test_client.post(
+            '/',
+            data = dict(
+                file=file,
+            ),
+            follow_redirects=True,
+            content_type='multipart/form-data',
+        )
+
+    assert response.status_code == 422
+    assert b'HTTP 422 Unprocessable Entity' in response.data
+    assert b'Please try again' in response.data
+
+# def test_422_wrong_file_extension(test_client):
 #     """
 #     GIVEN a sample file from the test_samples folder
-#     WHEN a file a missing summary worksheet is submitted
+#     WHEN a file with a wrong file extension is submitted
+#     THEN check that the status is not processable.
+#     """
+
+# def test_422_wrong_file_extension(test_client):
+#     """
+#     GIVEN a sample file from the test_samples folder
+#     WHEN a file with an unparsable date is submitted
 #     THEN check that the status is not processable.
 #     """
 
@@ -90,13 +122,6 @@ def test_422_bad_file_year(test_client):
 #     """
 #     GIVEN a sample file from the test_samples folder
 #     WHEN a file with a missing voc worksheet is submitted
-#     THEN check that the status is not processable.
-#     """
-
-# def test_422_unable_to_find_summary_date(test_client):
-#     """
-#     GIVEN a sample file from the test_samples folder
-#     WHEN a file with a non-matching summary date
 #     THEN check that the status is not processable.
 #     """
 

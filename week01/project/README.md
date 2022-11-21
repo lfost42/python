@@ -33,10 +33,10 @@ There are more details specified in the work item processing job status section 
 
 As mentioned above, the http method you implement in the flask webserver, will attempt to parse the excel file after it saves it to a folder on the server side. Here are some details on how you need to implement this parser:
 
-- [X] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
-- [X] 2. The parser should attempt to parse the file that was just uploaded.
-- [X] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
-- [X] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
+- [x] 1. Please import csv (or) openpyxl & Logging packages for this parsing problem.
+- [x] 2. The parser should attempt to parse the file that was just uploaded.
+- [x] 3. Write code to infer the month and year from the file name. For eg if the file name is expedia_report_monthly_january_2018.xlsx, then the month is "january" and the year is "2018". Feel free to use any fuzzy logic, as the naming conventions are intentionally inconsistent.
+- [x] 4. Based on the month and year inferred above, the parser generates output in a specific format outlined below after it parses the data in the first and second tab of the excel sheet.
 
 ### Output 1
 

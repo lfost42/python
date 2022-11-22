@@ -12,6 +12,3 @@
 | &#9745; | W1D4 - Part 2 Flask Core | [folder](./week01/W1D4/Part2) |
 | &#9745; | W1D5 - Coursework | [folder](./week01/W1D5) |
 | &#9745; | Evaluation Project | [folder](./week01/project) |
-
-## Apprenticeship Training
-... to be continued

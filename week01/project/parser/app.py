@@ -16,7 +16,8 @@ class My422Error(Exception):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    """_summary_
+    """Routes the get to index.html and posts to either the report.html
+    or the appropriate error page.
 
     Returns:
         html: report.html if upload/parsing is
@@ -72,4 +73,5 @@ def index():
             return render_template(
                 'error/422.html', file_name = file.filename, message = err_msg), 422
 
+    # for http methods that are not a GET or POST.
     return render_template('error/405.html'), 405

@@ -64,7 +64,7 @@ def archive_file(file):
     return -1
 
 def error_file(file):
-    """Move to error folder
+    """Moves file to error folder.
 
     Args:
         file (FileStorage): file for upload

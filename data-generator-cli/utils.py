@@ -1,9 +1,11 @@
 """
 Helper methods. 
 """
-from faker import Faker
 import string
+import requests
 import random
+from faker import Faker
+import config
 from logging_handler import logger
 
 
@@ -51,3 +53,24 @@ def random_user_info():
     income = random_num(6)
     address = fake.street_address()
     return social_security, drivers_license, phone_number, income, address
+
+def get_header():
+    """Retrieves the authorization header when the admin_login
+    user login data is passed to the login endpoint in the user microservice.
+
+    Returns:
+        string: An authorization header from the admin_login user. 
+    """
+    url = config.login_endpoint
+    data = {
+        "username" : config.admin_username,
+        "password" : config.admin_password
+        }
+    response = requests.post(url, json=data)
+    
+    if response.status_code == 200:
+        logger.info("Get header succeeded.")
+        return {
+            "Authorization" : response.headers["Authorization"]
+        }
+    logger.error(f"{response.status_code}: Header not saved")

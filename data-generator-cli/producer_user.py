@@ -2,7 +2,7 @@
 Produces random data for users through the user microservice endpoints. 
 """
 import requests
-from utils import random_user_id
+from utils import random_user_id, get_header
 from logging_handler import logger
 import config
 
@@ -33,24 +33,3 @@ def create_admin_login():
         return response    
     logger.error(f"{response.status_code}: Admin not created.")
 
-
-def get_header():
-    """Retrieves the authorization header when the admin_login
-    user login data is passed to the login endpoint in the user microservice.
-
-    Returns:
-        string: An authorization header from the admin_login user. 
-    """
-    url = config.login_endpoint
-    data = {
-        "username" : config.admin_username,
-        "password" : config.admin_password
-        }
-    response = requests.post(url, json=data)
-    
-    if response.status_code == 200:
-        logger.info("Get header succeeded.")
-        return {
-            "Authorization" : response.headers["Authorization"]
-        }
-    logger.error(f"{response.status_code}: Header not saved")

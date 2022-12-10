@@ -1,0 +1,3 @@
+'''
+Tests applicant producer methods. 
+'''

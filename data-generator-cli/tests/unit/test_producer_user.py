@@ -1,0 +1,3 @@
+'''
+Tests user producer methods. 
+'''

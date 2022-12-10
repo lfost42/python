@@ -12,3 +12,7 @@
 | &#9745; | W1D4 - Part 2 Flask Core | [folder](.//W1D4/Part2) |
 | &#9745; | W1D5 - Coursework | [folder](./W1D5) |
 | &#9745; | Evaluation Project | [folder](./project) |
+
+## Capstone Data Generaator
+| ------- | -------- | -------------- |
+| &#9744; | Data Generator Cli | [repo](./data-generator-cli) |

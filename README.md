@@ -14,5 +14,6 @@
 | &#9745; | Evaluation Project | [folder](./project) |
 
 ## Capstone Data Generaator
+|  |     |  |
 | ------- | -------- | -------------- |
 | &#9744; | Data Generator Cli | [repo](./data-generator-cli) |

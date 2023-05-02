@@ -1,6 +1,6 @@
-# Smoothstack AWS DevOps Engineer
+# Python Fundamentals
 
-## Pre-Apprenticeship Week 1&2 Combined
+## Pre-Apprenticeship Evaluation Period
 |  |     |  |
 | ------- | -------- | -------------- |
 | &#9745; | W1D1 - Part1 Vagrant and Virtualenv | [folder](./W1D1/Part1) |
